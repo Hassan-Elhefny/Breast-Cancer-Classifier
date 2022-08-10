@@ -2,12 +2,12 @@
 import pandas as pd
 import numpy as np
 import pickle
-#import seaborn as sns
-#import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.pyplot as plt
 import streamlit as st
 from sklearn.datasets import load_breast_cancer
-#from sklearn.manifold import TSNE
-#from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
+from sklearn.decomposition import PCA
 
 #add header and image to the web page
 st.write("""
@@ -23,29 +23,29 @@ st.header("Breast Data Frame")
 st.write(breast_df)
 
 #plot the distribution using TSNE
-#st.header("Distribution Of Original Breast Cancer Data")
-#tsne = TSNE(n_components=2, random_state=0)
-#tsne_features = tsne.fit_transform(breast_df)
-#fig, ax = plt.subplots()
-#sns.scatterplot(x = tsne_features[:,0], y= tsne_features[:,1], c=load_breast_cancer().target)
-#plt.title("Breast Cancer Before PCA")
-#plt.xlabel("TSNE Feature 0")
-#plt.ylabel("TSNE Feature 1")
-#plt.legend(['malignant', 'benign'])
-#st.pyplot(fig)
+st.header("Distribution Of Original Breast Cancer Data")
+tsne = TSNE(n_components=2, random_state=0)
+tsne_features = tsne.fit_transform(breast_df)
+fig, ax = plt.subplots()
+sns.scatterplot(x = tsne_features[:,0], y= tsne_features[:,1], c=load_breast_cancer().target)
+plt.title("Breast Cancer Before PCA")
+plt.xlabel("TSNE Feature 0")
+plt.ylabel("TSNE Feature 1")
+plt.legend(['malignant', 'benign'])
+st.pyplot(fig)
 
 #plot data after pca
-#st.header("Distribution Of Breast Cancer Data After PCA")
-#pca = PCA(n_components=12, random_state=0)
-#new_breast_df = pca.fit_transform(breast_df)
-#tsne_features_pca = tsne.fit_transform(new_breast_df)
-#fig, ax = plt.subplots()
-#sns.scatterplot(x = tsne_features_pca[:,0], y= tsne_features_pca[:,1], c=load_breast_cancer().target)
-#plt.title("Breast Cancer After PCA")
-#plt.xlabel("TSNE Feature 0")
-#plt.ylabel("TSNE Feature 1")
-#plt.legend(['malignant', 'benign'])
-#st.pyplot(fig)
+st.header("Distribution Of Breast Cancer Data After PCA")
+pca = PCA(n_components=12, random_state=0)
+new_breast_df = pca.fit_transform(breast_df)
+tsne_features_pca = tsne.fit_transform(new_breast_df)
+fig, ax = plt.subplots()
+sns.scatterplot(x = tsne_features_pca[:,0], y= tsne_features_pca[:,1], c=load_breast_cancer().target)
+plt.title("Breast Cancer After PCA")
+plt.xlabel("TSNE Feature 0")
+plt.ylabel("TSNE Feature 1")
+plt.legend(['malignant', 'benign'])
+st.pyplot(fig)
 
 #get features values from user
 st.sidebar.header("Feature Values")
